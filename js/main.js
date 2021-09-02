@@ -5,39 +5,58 @@ const submit = document.getElementById('search-id');
 const bookinput =() =>{
  const searchText = input.value
  input.value =''
- const bookurl =`https://openlibrary.org/search.json?q=${searchText}`
+ if(searchText==''){
+     document.getElementById('error').style.display ='block'
+ }
+else{
+    document.getElementById('error').style.display ='none'
+}
+
+//book url api dynamic by name
+const bookurl =`https://openlibrary.org/search.json?q=${searchText}`
  
 //for books
  fetch(bookurl)
  .then(res=>res.json())
  .then(data =>BooksData(data.docs))
 
+ 
+
 }
+
+
+
 
 
 const BooksData =(books)=>{
 
+
+ //show the number of search result from the online books store
     const numberR =document.getElementById('res-number');
+    numberR.textContent=''
     numberR.innerHTML=`
-    <h1 class=" text-muted" style="">The Searching result is ${books.length}</h1>
+                <h3 class=" text-muted" style="">The Searching result is ${books.length}</h3>
     `
-    //console.log(books); //array wise
+  
+   //catch the main div element id
     const booklist =document.getElementById('books-list')
-    count =1
-    booklist.textContent =''
+   
+
+    //clear the previous results 
+
+       booklist.textContent =''
+
+    /* show signly data books from book  using for loops */
+    console.log(books);
     books.forEach(book =>{
-        
-        
-      
-        
-        const div = document.createElement('div')
+     
+      const div = document.createElement('div')
         div.classList.add('col-md-3')
         div.innerHTML =`
                 <div class="card mb-2">
                     <img src="https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg" class="card-img-top" alt="..." height="350">
                     <div class="card-body">
                             <h5 class="card-title">Book Name : ${book.title}</h5>
-                            <h2>${count++}</h2>
                             <p class="card-text">
                                 <span class="h5">Author Name:</span> ${book.author_name}<br/>
                                 <span class="h5">Publisher Name:</span> ${book.publisher}<br/>
@@ -54,6 +73,11 @@ const BooksData =(books)=>{
 
     })
 }
+
+/***********************
+     Click more button to show to text code
+
+    ***************/
 
 const bookmore =(moredetails)=>{
    
