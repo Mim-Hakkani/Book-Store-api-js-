@@ -3,11 +3,12 @@ const input = document.getElementById('input-id');
 const submit = document.getElementById('search-id'); 
 
 const bookinput =() =>{
- const inputValue = input.value
+ const searchText = input.value
  input.value =''
-
+ const bookurl =`https://openlibrary.org/search.json?q=${searchText}`
+ 
 //for books
- fetch('https://openlibrary.org/search.json?q=javascript')
+ fetch(bookurl)
  .then(res=>res.json())
  .then(data =>BooksData(data.docs))
 
@@ -16,14 +17,18 @@ const bookinput =() =>{
 
 const BooksData =(books)=>{
 
-    console.log(books); //array wise
+    const numberR =document.getElementById('res-number');
+    numberR.innerHTML=`
+    <h1 class=" text-muted" style="">The Searching result is ${books.length}</h1>
+    `
+    //console.log(books); //array wise
     const booklist =document.getElementById('books-list')
     count =1
-/*       books cover image show  */
-
-
+    booklist.textContent =''
     books.forEach(book =>{
-
+        
+        
+      
         
         const div = document.createElement('div')
         div.classList.add('col-md-3')
