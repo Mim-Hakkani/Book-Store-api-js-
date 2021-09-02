@@ -14,32 +14,39 @@
   <body>
    
 <!-- searching books -->
-
+  <header>
     <div class="container mt-5">
-        <div class="row g-0">
+        <div class="row g-0 ">
             <div class="col-md-2"></div>
-            <div class="col-md-7">
+            <div class="col-md-7 input-search">
                 <input type="text" placeholder="Search book by name ,," class="form-control" id="input-id">
             </div>
-            <div class="col-md-3"> 
+            <div class="col-md-3 input-search"> 
                 <button class="btn btn-info text-white" id="search-id" onclick="bookinput()">Search Book</button>
             </div>
         </div>
     </div>
+  </header>
 
 
-    <!-- Error Handling -->
+    <!-- Error Handling for empty string -->
     <div class="container-fluid">
       <div id="error" class="text-danger text-center h2 text-capitalize my-3" style="display: none;">
-        <h4>Empty Value is not supporting</h4>
+        <h3>No Results Found ,, input valid book name</h3>
       </div>
     </div>
 
+  <!-- Error Handling for invalid book name -->
+  <div class="container-fluid">
+    <div id="error2" class="text-danger text-center h2 text-capitalize my-3" style="display: none;">
+      <h4>Please input valid book name ,,,</h4>
+    </div>
+  </div>
 
     <!-- see the number of results -->
 
-    <div class="container mt-4">
-        <div class="books-number " id="res-number" >
+    <div class="container-fluid mt-4">
+        <div class="books-number" id="res-number" >
            
         </div>
     </div>
